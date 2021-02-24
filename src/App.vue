@@ -98,5 +98,9 @@ a {
     margin-left: 5px;
     text-decoration: underline;
   }
-} 
+}
+
+.dk__error {
+  background-color: $error-color !important;
+}
 </style>

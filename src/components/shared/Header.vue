@@ -1,29 +1,10 @@
 <template>
   <nav class="header">
     <router-link :to="{ name: 'Login' }">
-      User
+      Prijava
     </router-link>
   </nav>
 </template>
-
-<script>
-import { ref } from 'vue';
-
-export default {
-  setup() {
-    const username = ref('');
-    const email = ref('');
-    const password = ref('');
-    const repeatedPassword = ref('');
-
-    const register = () => {
-      
-    }
-
-    return { username, email, password, repeatedPassword }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .header {

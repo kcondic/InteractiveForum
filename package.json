@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "firebase": "^8.2.9",
     "vue": "^3.0.0",
+    "vue-dk-toast": "^2.1.2",
     "vue-router": "^4.0.4"
   },
   "devDependencies": {
