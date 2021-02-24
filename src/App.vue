@@ -83,4 +83,20 @@ button {
     background-color: $background-color--accent;
   }
 }
+
+a {
+  text-decoration: none;
+  color: $text-color;
+}
+
+.switch-auth-type {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  a { 
+    margin-left: 5px;
+    text-decoration: underline;
+  }
+} 
 </style>

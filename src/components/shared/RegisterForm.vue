@@ -26,6 +26,12 @@
     >
     <button>Registriraj se</button>
   </form>
+  <div class="switch-auth-type">
+    Već imaš račun?
+    <router-link :to="{ name: 'Login' }">
+      Prijavi se
+    </router-link>
+  </div>
 </template>
 
 <script>

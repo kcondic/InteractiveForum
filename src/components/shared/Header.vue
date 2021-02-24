@@ -1,10 +1,7 @@
 <template>
   <nav class="header">
-    <router-link :to="{ name: 'Register' }">
-      Registriraj se
-    </router-link>
     <router-link :to="{ name: 'Login' }">
-      Prijavi se
+      User
     </router-link>
   </nav>
 </template>
@@ -38,7 +35,6 @@ export default {
 
   a {
     margin-right: 20px;
-    text-decoration: none;
     border-bottom: 2px solid transparent;
     text-transform: uppercase;
     color: $text-color--light;
