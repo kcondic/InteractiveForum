@@ -4,6 +4,7 @@ module.exports = {
       'eslint:recommended'
     ],
     rules: {
-        'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+      'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+      'no-undef': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     }
   }

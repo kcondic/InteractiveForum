@@ -1,3 +1,6 @@
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 const firebaseConfig = {
     apiKey: "AIzaSyDRCeVIPw5-fnPf5tTRuoqvpapqy8snYTA",
     authDomain: "interactiveforum-46b2a.firebaseapp.com",
@@ -6,4 +9,12 @@ const firebaseConfig = {
     messagingSenderId: "305848544987",
     appId: "1:305848544987:web:c401d8c91b342566fde6fe",
     measurementId: "G-M1J1LHM2VY"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.firestore();
+
+export {
+    database
 };
