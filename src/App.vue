@@ -13,10 +13,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
   font-size: 14px;
   font-family: Arial;
+  color: $text-color;
 }
 </style>
