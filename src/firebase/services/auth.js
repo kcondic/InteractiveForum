@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { auth } from '@/firebase/config';
+import { database, auth, timestamp } from '@/firebase/config';
 
 const tryRegister = async (email, password, username) => {
   try {
@@ -7,13 +7,22 @@ const tryRegister = async (email, password, username) => {
 
     if(!response)
       throw new Error();
-
+      
     await response.user.updateProfile({ displayName: username });
+    await storeAdditionalUserInfo(response.user);
 
     return response;  
   } catch (error) {
     return error;
   }
+}
+
+const storeAdditionalUserInfo = async(user) => {
+  await database.collection('users').doc(user.uid).set({
+    username: user.displayName,
+    numberOfPosts: 0,
+    joined: timestamp()
+  });
 }
 
 const tryLogin = async (email, password) => {

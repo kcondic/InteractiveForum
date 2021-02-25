@@ -47,6 +47,7 @@ export default {
   .username {
     color: $text-color--light;
     margin-right: 10px;
+    padding: 10px 0;
   }
 
   a {
