@@ -30,7 +30,7 @@ export default {
         toast('Odjava neuspješna. Molimo pokušajte ponovo.', { type: 'error' });
     }
 
-    return { user, logout }
+    return { user, logout };
   }
 }
 </script>

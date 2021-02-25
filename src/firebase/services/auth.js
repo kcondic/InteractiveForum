@@ -7,7 +7,7 @@ const tryRegister = async (email, password, username) => {
 
     if(!response)
       throw new Error();
-      
+
     await response.user.updateProfile({ displayName: username });
     await storeAdditionalUserInfo(response.user);
 
@@ -17,12 +17,18 @@ const tryRegister = async (email, password, username) => {
   }
 }
 
-const storeAdditionalUserInfo = async(user) => {
+const storeAdditionalUserInfo = async (user) => {
   await database.collection('users').doc(user.uid).set({
     username: user.displayName,
     numberOfPosts: 0,
     joined: timestamp()
   });
+}
+
+const getAdditionalUserInfo = async (userId) => {
+  const userInfo = await database.collection('users').doc(userId).get();
+
+  return userInfo.data();
 }
 
 const tryLogin = async (email, password) => {
@@ -56,4 +62,4 @@ const getUser = () => {
   return user;
 }
 
-export { tryRegister, tryLogin, tryLogout, getUser };
+export { tryRegister, tryLogin, tryLogout, getUser, getAdditionalUserInfo };

@@ -1,12 +1,18 @@
 <template>
-  Ovo su teme
+  <h1>Teme</h1>
+  <Topic v-for="topic in topics" :key="topic.title" :topic="topic" />
 </template>
 
 <script>
+import Topic from '@/components/topics/Topic';
+import { getTopics } from '@/firebase/services/topics';
+
 export default {
+  components: { Topic },
+  setup() {
+    const topics = getTopics();
+
+    return { topics };
+  }
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>
