@@ -10,5 +10,5 @@ export default {
   components: {
     LoginForm
   }
-}
+};
 </script>

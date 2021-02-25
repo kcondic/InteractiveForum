@@ -1,18 +1,53 @@
 <template>
   <nav class="header">
-    <router-link :to="{ name: 'Login' }">
-      Prijava
-    </router-link>
+    <template v-if="user">
+      <span class="username">{{ user.displayName }}</span>
+      <button @click="logout">
+        Odjava
+      </button>
+    </template>
+    <template v-else>
+      <router-link :to="{ name: 'Login' }">
+        Prijava
+      </router-link>
+    </template>
   </nav>
 </template>
+
+<script>
+import { inject } from 'vue';
+import { getUser, tryLogout } from '@/firebase/services/auth';
+
+export default {
+  setup() {
+    const toast = inject('$toast');
+
+    const user = getUser();
+    
+    const logout = async () => {
+      const response = await tryLogout();
+      if(response && response.message)
+        toast('Odjava neuspješna. Molimo pokušajte ponovo.', { type: 'error' });
+    }
+
+    return { user, logout }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .header {
   position: fixed;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 100%;
   background-color: $background-color;
+
+  .username {
+    color: $text-color--light;
+    margin-right: 10px;
+  }
 
   a {
     margin-right: 20px;

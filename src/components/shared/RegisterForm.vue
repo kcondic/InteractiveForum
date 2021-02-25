@@ -38,10 +38,12 @@
 
 <script>
 import { ref, inject } from 'vue';
+import { useRouter } from 'vue-router';
 import { tryRegister } from '@/firebase/services/auth';
 
 export default {
   setup() {
+    const router = useRouter();
     const toast = inject('$toast');
 
     const username = ref('');
@@ -79,12 +81,21 @@ export default {
       }
 
       const response = await tryRegister(email.value, password.value, username.value);
-      console.log(response);
-      if(!response.user)
-        toast(response.message);
+
+      if(!response.user) {
+        let errorMessage = 'Registracija nije uspjela zbog: ';
+        if(response.message && response.message.length) 
+          errorMessage += response.message;
+        else
+          errorMessage += 'nepoznat uzrok';
+        
+        toast(errorMessage, { type: 'error' });
+      }
+      else
+        router.push({ name: 'Topics' });
     }
 
-    return { username, email, password, repeatedPassword, register }
+    return { username, email, password, repeatedPassword, register };
   }
 }
 </script>

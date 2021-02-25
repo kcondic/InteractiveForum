@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="register">
+  <form @submit.prevent="login">
     <input
       v-model="email"
       type="text"
@@ -23,18 +23,35 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
+import { useRouter } from 'vue-router';
+import { tryLogin } from '@/firebase/services/auth';
 
 export default {
   setup() {
+    const router = useRouter();
+    const toast = inject('$toast');
+
     const email = ref('');
     const password = ref('');
 
-    const login = () => {
-      
+    const login = async () => {
+      let isValidMail = /\S+@\S+\.\S+/.test(email.value);
+
+      if(!isValidMail) {
+        toast('E-mail adresa nije važeća.', { type: 'error' });
+        return;
+      }
+
+      const response = await tryLogin(email.value, password.value);
+
+      if(!response.user)
+        toast('Neispravni podaci za prijavu.', { type: 'error' });
+      else
+        router.push({ name: 'Topics' });
     }
 
-    return { email, password, login }
+    return { email, password, login };
   }
 }
 </script>

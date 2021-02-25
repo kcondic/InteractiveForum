@@ -62,6 +62,10 @@ form {
       box-shadow: none;
     }
   }
+
+  button {
+    margin-left: auto;
+  }
 }
 
 ::placeholder {
@@ -72,7 +76,6 @@ form {
 button {
   background-color: $background-color;
   color: $text-color--light;
-  margin-left: auto;
   outline: none;
   border: none;
   padding: 8px 10px;
