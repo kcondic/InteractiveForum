@@ -1,6 +1,7 @@
 import { ref, watchEffect } from 'vue';
 import { database, timestamp } from '@/firebase/config';
 import { getUser } from '@/firebase/services/auth';
+import { updateThreadLastUpdated } from '@/firebase/services/threads';
 
 const posts = ref([]);
 let unsubscribeHandle;
@@ -47,6 +48,7 @@ const submitPost = async(topicId, threadId, content, quotedPostId) => {
   });
 
   await incrementUserPosts(user.value);
+  await updateThreadLastUpdated(topicId, threadId);
 }
 
 const incrementUserPosts = async (user) => {

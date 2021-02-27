@@ -1,5 +1,5 @@
 import { ref, watchEffect } from 'vue';
-import { database } from '@/firebase/config';
+import { database, timestamp } from '@/firebase/config';
 
 const threads = ref([]);
 let unsubscribeHandle;
@@ -20,10 +20,18 @@ const getThreads = () => {
   return threads;
 };
 
+const updateThreadLastUpdated = async (topicId, threadId) => {
+  await database.collection(`topics/${topicId}/threads`)
+    .doc(threadId)
+    .update({
+      lastUpdated: timestamp()
+    });
+};
+
 watchEffect(onInvalidate => {
   onInvalidate(() => {
     unsubscribeHandle();
   });
 });
 
-export { setupThreadsListener, getThreads };
+export { setupThreadsListener, getThreads, updateThreadLastUpdated };
