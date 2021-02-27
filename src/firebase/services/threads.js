@@ -4,14 +4,13 @@ import { database } from '@/firebase/config';
 const threads = ref([]);
 
 const setupThreadsListener = (topicId) => {
-  database.collection(`topics/${topicId}/threads`).onSnapshot(snapshot => {
+  database.collection(`topics/${topicId}/threads`).orderBy('lastUpdated', 'desc').onSnapshot(snapshot => {
     let threadsArray = [];
     snapshot.forEach(doc => {
       threadsArray.push({ id: doc.id, ...doc.data() });
     });
 
-    threads.value = threadsArray.sort((firstThread, secondThread) => 
-      firstThread.lastUpdated < secondThread.lastUpdated ? 1 : -1);
+    threads.value = threadsArray;
   });
 };
 

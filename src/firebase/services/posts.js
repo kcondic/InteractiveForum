@@ -4,15 +4,14 @@ import { database } from '@/firebase/config';
 const posts = ref([]);
 
 const setupPostsListener = (topicId, threadId) => {
-  database.collection(`topics/${topicId}/threads/${threadId}/posts`)
+  database.collection(`topics/${topicId}/threads/${threadId}/posts`).orderBy('timestamp', 'desc')
   .onSnapshot(snapshot => {
     let postsArray = [];
     snapshot.forEach(doc => {
       postsArray.push({ id: doc.id, ...doc.data() });
     });
 
-    posts.value = postsArray.sort((firstPost, secondPost) => 
-      firstPost.timestamp < secondPost.timestamp ? -1 : 1);
+    posts.value = postsArray;
   });
 };
 

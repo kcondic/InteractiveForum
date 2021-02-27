@@ -3,14 +3,13 @@ import { database } from '@/firebase/config';
 
 const topics = ref([]);
 
-database.collection('topics').onSnapshot(snapshot => {
+database.collection('topics').orderBy('title').onSnapshot(snapshot => {
   let topicsArray = [];
   snapshot.forEach(doc => {
     topicsArray.push({ id: doc.id, ...doc.data() });
   });
-
-  topics.value = topicsArray.sort((firstTopic, secondTopic) => 
-    firstTopic.title < secondTopic.title ? -1 : 1);
+  
+  topics.value = topicsArray;
 });
 
 const getTopics = () => {
