@@ -1,5 +1,8 @@
 <template>
   <nav class="header">
+    <router-link class="home-icon" :to="{ name: 'Topics' }">
+      <img :src="homeIcon" />
+    </router-link>
     <template v-if="user">
       <span class="username">{{ user.displayName }}</span>
       <button @click="logout">
@@ -21,6 +24,8 @@ import { getUser, tryLogout } from '@/firebase/services/auth';
 export default {
   setup() {
     const toast = inject('$toast');
+    const homeIcon = require('@/assets/home.svg');
+
 
     const user = getUser();
     
@@ -30,7 +35,7 @@ export default {
         toast('Odjava neuspješna. Molimo pokušajte ponovo.', { type: 'error' });
     }
 
-    return { user, logout };
+    return { user, logout, homeIcon };
   }
 }
 </script>
@@ -60,6 +65,20 @@ export default {
 
     &:hover, &.router-link-exact-active {
       border-bottom-color: $text-color--light;
+    }
+  }
+
+  .home-icon {
+    filter: invert(1);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+    margin-right: auto;
+    margin-left: 10px;
+
+    img {
+      height: 24px;
     }
   }
 }

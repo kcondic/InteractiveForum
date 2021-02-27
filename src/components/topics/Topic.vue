@@ -4,7 +4,10 @@
       <div class="title">{{ topic.title }}</div>
       <div class="subtitle">{{ topic.subtitle }}</div>
     </div>
-    <UserDetails :user="user" :only-username="true" />
+    <div class="user-details">
+      <span class="author">Stvorio:</span>
+      <UserDetails :user="user" :only-username="true" />
+    </div>
   </div>
 </template>
 
