@@ -1,5 +1,8 @@
 <template>
-  <form class="box" @submit.prevent="login">
+  <form
+    class="box"
+    @submit.prevent="login"
+  >
     <input
       v-model="email"
       type="text"

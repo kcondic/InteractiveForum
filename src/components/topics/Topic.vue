@@ -1,10 +1,12 @@
 <template>
-  <router-link :to="{ name: 'Threads',
-    params: { topicId: topic.id,
-        topicTitle: textToSlug(topic.title)
-      }
+  <router-link
+    :to="{ name: 'Threads',
+           params: { topicId: topic.id,
+                     topicTitle: textToSlug(topic.title)
+           }
     }"
-    class="topic box wide">
+    class="topic box wide"
+  >
     <div>
       <div class="title">
         {{ topic.title }}

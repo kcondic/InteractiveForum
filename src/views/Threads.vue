@@ -6,11 +6,12 @@
     :thread="thread"
     :topic-id="topicId"
   />
-  <h3 v-if="!threads.length">Trenutno nema tema u ovoj kategoriji :(</h3>
+  <h3 v-if="!threads.length">
+    Trenutno nema tema u ovoj kategoriji :(
+  </h3>
 </template>
 
 <script>
-import { watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Thread from '@/components/threads/Thread';
 import { setupThreadsListener, getThreads } from '@/firebase/services/threads';
@@ -21,9 +22,6 @@ export default {
     const route = useRoute();
 
     const threads = getThreads();
-    watch(threads, () => {
-      console.log(JSON.stringify(threads.value));
-    })
 
     const topicId = route.params.topicId;
     setupThreadsListener(topicId);

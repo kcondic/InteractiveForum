@@ -1,12 +1,14 @@
 <template>
-  <router-link :to="{ name: 'Posts',
-    params: {
-        topicId: topicId,
-        threadId: thread.id,
-        threadTitle: textToSlug(thread.title)
-      } 
+  <router-link
+    :to="{ name: 'Posts',
+           params: {
+             topicId: topicId,
+             threadId: thread.id,
+             threadTitle: textToSlug(thread.title)
+           } 
     }"
-    class="thread box wide">
+    class="thread box wide"
+  >
     <div>
       <div class="title">
         {{ thread.title }}
@@ -45,7 +47,7 @@ export default {
   },
   setup(props) {
     const user = ref(null);
-    console.log(props);
+
     onMounted(async () => {
       const userInfo = await getAdditionalUserInfo(props.thread.createdByUserId); 
 
@@ -56,3 +58,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.thread .updated-on {
+  margin-top: 5px;
+  color: $text-color--dark;
+}
+</style>
