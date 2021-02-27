@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="register">
+  <form class="box" @submit.prevent="register">
     <input
       v-model="username"
       type="text"

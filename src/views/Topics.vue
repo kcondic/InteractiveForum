@@ -1,6 +1,10 @@
 <template>
   <h1>Teme</h1>
-  <Topic v-for="topic in topics" :key="topic.title" :topic="topic" />
+  <Topic
+    v-for="topic in topics"
+    :key="topic.title"
+    :topic="topic"
+  />
 </template>
 
 <script>

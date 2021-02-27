@@ -1,20 +1,28 @@
 <template>
-  <div class="topic">
-    <div class="main-info">
-      <div class="title">{{ topic.title }}</div>
-      <div class="subtitle">{{ topic.subtitle }}</div>
+  <router-link :to="{ name: 'Threads', params: { topicId: topic.id, topicTitle: textToSlug(topic.title) } }" class="topic box" @click="navigateToThreads">
+    <div>
+      <div class="title">
+        {{ topic.title }}
+      </div>
+      <div class="subtitle">
+        {{ topic.subtitle }}
+      </div>
     </div>
     <div class="user-details">
       <span class="author">Stvorio:</span>
-      <UserDetails :user="user" :only-username="true" />
+      <UserDetails
+        :user="user"
+        :only-username="true"
+      />
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
 import { getAdditionalUserInfo } from '@/firebase/services/auth';
 import UserDetails from '@/components/shared/UserDetails';
+import { textToSlug } from '@/utils/utils';
 
 export default {
   components: { UserDetails },
@@ -33,11 +41,35 @@ export default {
       user.value = userInfo;
     });
 
-    return { user };
+    return { user, textToSlug };
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.topic {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
 
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    color: $text-color--dark;
+  }
+  
+  .user-details {
+    display: flex;
+    margin-left: auto;
+
+    .author {
+      margin-right: 5px;
+    }
+  }
+}
 </style>

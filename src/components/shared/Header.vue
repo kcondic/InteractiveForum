@@ -1,7 +1,10 @@
 <template>
   <nav class="header">
-    <router-link class="home-icon" :to="{ name: 'Topics' }">
-      <img :src="homeIcon" />
+    <router-link
+      class="home-icon"
+      :to="{ name: 'Topics' }"
+    >
+      <img :src="homeIcon">
     </router-link>
     <template v-if="user">
       <span class="username">{{ user.displayName }}</span>
@@ -25,7 +28,6 @@ export default {
   setup() {
     const toast = inject('$toast');
     const homeIcon = require('@/assets/home.svg');
-
 
     const user = getUser();
     

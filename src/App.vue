@@ -44,10 +44,8 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
-  padding: 20px 25%;
-  box-shadow: 4px 6px 30px -10px $box-shadow-color;
-  background-color: $background-color--light;
+  padding-left: 25%;
+  padding-right: 25%;
 
   input {
     margin-bottom: 20px;
@@ -105,5 +103,13 @@ a {
 
 .dk__error {
   background-color: $error-color !important;
+}
+
+.box {
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 4px 6px 30px -10px $box-shadow-color;
+  background-color: $background-color--light;
 }
 </style>
