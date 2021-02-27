@@ -13,7 +13,8 @@
     "firebase": "^8.2.9",
     "vue": "^3.0.0",
     "vue-dk-toast": "^2.1.2",
-    "vue-router": "^4.0.4"
+    "vue-router": "^4.0.4",
+    "vue3-editor": "0.1.0-alpha.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

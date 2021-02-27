@@ -33,6 +33,7 @@ body {
 
 main {
   padding: 70px 10% 0;
+  height: 100vh;
 
   h1 {
     margin-bottom: 30px;

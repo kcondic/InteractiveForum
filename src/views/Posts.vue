@@ -1,23 +1,30 @@
 <template>
-  <Post
-    v-for="post in posts"
-    :key="post.id"
-    :post="post"
-    :topic-id="topicId"
-    :thread-id="threadId"
-  />
+  <div class="posts-container">
+    <Post
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+      :topic-id="topicId"
+      :thread-id="threadId"
+      v-on:set-quote="setQuote"
+    />
+  </div>
+  <PostEditor v-on:send-post="sendPost" />
   <h3 v-if="!posts.length">
     Trenutno nema poruka u ovoj temi :(
   </h3>
+  <button class="remove-quote" v-if="quotedPostId" @click="removeQuote">Makni citat</button>
 </template>
 
 <script>
+import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Post from '@/components/posts/Post';
-import { setupPostsListener, getPosts } from '@/firebase/services/posts';
+import PostEditor from '@/components/posts/PostEditor';
+import { setupPostsListener, getPosts, submitPost } from '@/firebase/services/posts';
 
 export default {
-  components: { Post },
+  components: { Post, PostEditor },
   setup() {
     const route = useRoute();
 
@@ -28,7 +35,34 @@ export default {
 
     setupPostsListener(topicId, threadId);
 
-    return { posts, topicId, threadId };
+    const quotedPostId = ref('');
+
+    const setQuote = (postId) => {
+      quotedPostId.value = postId;
+    };
+
+    const removeQuote = () => {
+      quotedPostId.value = '';
+    };
+
+    const sendPost = async (content) => {
+      await submitPost(topicId, threadId, content, quotedPostId.value);
+      removeQuote();
+    };
+
+    return { posts, topicId, threadId, setQuote, removeQuote, quotedPostId, sendPost };
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.posts-container {
+  padding-bottom: 200px;
+}
+
+.remove-quote {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+</style>

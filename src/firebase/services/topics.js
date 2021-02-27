@@ -1,9 +1,9 @@
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { database } from '@/firebase/config';
 
 const topics = ref([]);
 
-database.collection('topics').orderBy('title').onSnapshot(snapshot => {
+const unsubscribeHandle = database.collection('topics').orderBy('title').onSnapshot(snapshot => {
   let topicsArray = [];
   snapshot.forEach(doc => {
     topicsArray.push({ id: doc.id, ...doc.data() });
@@ -15,5 +15,11 @@ database.collection('topics').orderBy('title').onSnapshot(snapshot => {
 const getTopics = () => {
   return topics;
 };
+
+watchEffect(onInvalidate => {
+  onInvalidate(() => {
+    unsubscribeHandle();
+  });
+});
 
 export { getTopics };
