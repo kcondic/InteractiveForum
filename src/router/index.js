@@ -4,6 +4,7 @@ import Register from '@/views/Register';
 import Login from '@/views/Login';
 import Threads from '@/views/Threads';
 import Posts from '@/views/Posts';
+import NotFound from '@/views/NotFound';
 import { auth } from '@/firebase/config';
 
 const requireNonAuth = (to, from, next) => {
@@ -41,12 +42,17 @@ const routes = [
         path: '/posts/:topicId/:threadId-:threadTitle',
         name: 'Posts',
         component: Posts
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFound
     }
 ];
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
-})
+});
 
 export default router;

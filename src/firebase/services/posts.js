@@ -36,6 +36,9 @@ const getPost = async (topicId, threadId, postId) => {
 const submitPost = async(topicId, threadId, content, quotedPostId) => {
   const user = getUser();
 
+  if(!user)
+    return;
+
   const newPost = {
     createdByUserId: user.value.uid,
     content: content,
