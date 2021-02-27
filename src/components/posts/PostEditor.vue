@@ -1,25 +1,33 @@
 <template>
   <div class="post-editor">
-    <vue-editor v-model="content" />
+    <vue-editor :disabled="!user" v-model="content" />
   </div>
-  <button class="post-button" @click="sendPost">Pošalji</button>
+  <button v-if="user" class="post-button" @click="sendPost">Pošalji</button>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { VueEditor } from 'vue3-editor';
+import { getUser } from '@/firebase/services/auth';
 
 export default {
   components: { VueEditor },
   setup(props, context) {
     const content = ref('');
+    const user = getUser();
+    const toast = inject('$toast');
 
     const sendPost = () => {
+      if(!content.value) {
+        toast('Poruka ne može biti prazna.', { type: 'error' });
+        return;
+      }
+
       context.emit('sendPost', content.value);
       content.value = '';
     };
 
-    return { content, sendPost };
+    return { content, user, sendPost };
   }
 }
 </script>

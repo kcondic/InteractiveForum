@@ -6,10 +6,10 @@
       :post="post"
       :topic-id="topicId"
       :thread-id="threadId"
-      v-on:set-quote="setQuote"
+      @set-quote="setQuote"
     />
   </div>
-  <PostEditor v-on:send-post="sendPost" />
+  <PostEditor @send-post="sendPost" />
   <h3 v-if="!posts.length">
     Trenutno nema poruka u ovoj temi :(
   </h3>

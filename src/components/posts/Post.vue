@@ -13,7 +13,7 @@
         <div class="timestamp">
           {{ post.timestamp.toDate().toLocaleString() }}
         </div>
-        <a class="quote-cta" @click="setQuote">Citiraj</a>
+        <a v-if="authenticatedUser" class="quote-cta" @click="setQuote">Citiraj</a>
       </div>
       <div class="content">
         <Post
@@ -42,6 +42,7 @@
 import { ref, onMounted } from 'vue';
 import { getAdditionalUserInfo } from '@/firebase/services/auth';
 import { getPost } from '@/firebase/services/posts';
+import { getUser } from '@/firebase/services/auth';
 import UserDetails from '@/components/shared/UserDetails';
 import Post from '@/components/posts/Post';
 
@@ -66,6 +67,7 @@ export default {
     }
   },
   setup(props, context) {
+    const authenticatedUser = getUser();
     const user = ref(null);
     const quotedPost = ref(null);
 
@@ -86,7 +88,7 @@ export default {
       context.emit('setQuote', props.post.id);
     };
 
-    return { user, quotedPost, setQuote };
+    return { authenticatedUser, user, quotedPost, setQuote };
   }
 }
 </script>
