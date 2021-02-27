@@ -8,11 +8,11 @@
       :thread-id="threadId"
       @set-quote="setQuote"
     />
+    <h3 v-if="!posts.length">
+      Trenutno nema poruka u ovoj temi :(
+    </h3>
   </div>
   <PostEditor @send-post="sendPost" />
-  <h3 v-if="!posts.length">
-    Trenutno nema poruka u ovoj temi :(
-  </h3>
   <button class="remove-quote" v-if="quotedPostId" @click="removeQuote">Makni citat</button>
 </template>
 

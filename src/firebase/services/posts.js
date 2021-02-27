@@ -36,7 +36,7 @@ const getPost = async (topicId, threadId, postId) => {
 const submitPost = async(topicId, threadId, content, quotedPostId) => {
   const user = getUser();
 
-  if(!user)
+  if(!user || !user.value)
     return;
 
   const newPost = {

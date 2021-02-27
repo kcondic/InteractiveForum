@@ -94,8 +94,10 @@ export default {
         
         toast(errorMessage, { type: 'error' });
       }
-      else
+      else {
+        toast('Registracija uspješna!', { type: 'success' });
         router.push({ name: 'Topics' });
+      }
     }
 
     return { username, email, password, repeatedPassword, register };
