@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { database } from '@/firebase/config';
 
-const topics = ref(null);
+const topics = ref([]);
 
 database.collection('topics').onSnapshot(snapshot => {
   let topicsArray = [];
@@ -11,10 +11,10 @@ database.collection('topics').onSnapshot(snapshot => {
 
   topics.value = topicsArray.sort((firstTopic, secondTopic) => 
     firstTopic.title < secondTopic.title ? -1 : 1);
-})
+});
 
 const getTopics = () => {
   return topics;
-}
+};
 
 export { getTopics };

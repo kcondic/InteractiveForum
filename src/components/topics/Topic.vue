@@ -1,5 +1,10 @@
 <template>
-  <router-link :to="{ name: 'Threads', params: { topicId: topic.id, topicTitle: textToSlug(topic.title) } }" class="topic box" @click="navigateToThreads">
+  <router-link :to="{ name: 'Threads',
+    params: { topicId: topic.id,
+        topicTitle: textToSlug(topic.title)
+      }
+    }"
+    class="topic box wide">
     <div>
       <div class="title">
         {{ topic.title }}
@@ -47,29 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.topic {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  padding-left: 10%;
-  padding-right: 10%;
-
-  .title {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .subtitle {
-    color: $text-color--dark;
-  }
-  
-  .user-details {
-    display: flex;
-    margin-left: auto;
-
-    .author {
-      margin-right: 5px;
-    }
-  }
+.topic .subtitle {
+  color: $text-color--dark;
 }
 </style>

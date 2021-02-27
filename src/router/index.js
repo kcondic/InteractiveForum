@@ -3,6 +3,7 @@ import Topics from '@/views/Topics';
 import Register from '@/views/Register';
 import Login from '@/views/Login';
 import Threads from '@/views/Threads';
+import Posts from '@/views/Posts';
 import { auth } from '@/firebase/config';
 
 const requireNonAuth = (to, from, next) => {
@@ -35,6 +36,11 @@ const routes = [
         path: '/threads/:topicId-:topicTitle',
         name: 'Threads',
         component: Threads
+    },
+    {
+        path: '/posts/:topicId/:threadId-:threadTitle',
+        name: 'Posts',
+        component: Posts
     }
 ];
 

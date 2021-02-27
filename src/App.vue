@@ -44,8 +44,6 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 25%;
-  padding-right: 25%;
 
   input {
     margin-bottom: 20px;
@@ -107,9 +105,33 @@ a {
 
 .box {
   border-radius: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 25%;
   box-shadow: 4px 6px 30px -10px $box-shadow-color;
   background-color: $background-color--light;
+
+  &.wide {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  &.topic, &.thread {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    .user-details {
+      display: flex;
+      margin-left: auto;
+
+      .author {
+        margin-right: 5px;
+      }
+    }
+  }
 }
 </style>

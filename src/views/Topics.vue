@@ -1,8 +1,8 @@
 <template>
-  <h1>Teme</h1>
+  <h1>Kategorije</h1>
   <Topic
     v-for="topic in topics"
-    :key="topic.title"
+    :key="topic.id"
     :topic="topic"
   />
 </template>
