@@ -135,6 +135,10 @@ a {
   box-shadow: 4px 6px 30px -10px $box-shadow-color;
   background-color: $background-color--light;
 
+  @media screen and (max-width: 768px) {
+    padding: 20px 10%;
+  }
+
   &.wide {
     padding-left: 10%;
     padding-right: 10%;

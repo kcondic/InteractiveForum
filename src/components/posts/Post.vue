@@ -100,6 +100,10 @@ export default {
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: 8px 12px 20px -10px $box-shadow-color;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
   
   .user-details-container .user-details {
     height: 100%;
@@ -109,6 +113,13 @@ export default {
     border-radius: 10px 0 0 10px;
     background-color: $background-color;
     color: $text-color--light;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+      border-right: none;
+      border-bottom: 1px solid $background-color--accent;
+    }
 
     .username {
       font-size: 16px;
@@ -125,6 +136,11 @@ export default {
     border-radius: 10px;
     flex-grow: 1;
     max-width: calc(100% - 200px);
+    padding-bottom: 20px;
+
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+    }
 
     .timestamp-and-quote-container {
       display: flex;

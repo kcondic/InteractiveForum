@@ -86,6 +86,9 @@ const submitPost = async(topicId, threadId, content, quotedPostId) => {
 
     const quotedPostAuthorId = quotedPost.createdByUserId;
 
+    if(quotedPostAuthorId === user.value.uid)
+      return;
+
     const userWhoQuoted = await getAdditionalUserInfo(user.value.uid);
 
     const threadToWhichItWasPosted = await getThread(topicId, threadId);
