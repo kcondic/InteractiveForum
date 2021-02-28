@@ -48,6 +48,7 @@ export default {
     const sendPost = async (content) => {
       await submitPost(topicId, threadId, content, quotedPostId.value);
       removeQuote();
+      window.scrollTo(0, document.body.scrollHeight);
     };
 
     return { posts, topicId, threadId, setQuote, removeQuote, quotedPostId, sendPost };
