@@ -216,6 +216,10 @@ export default {
     color: $text-color--light;
     border: 1px solid $background-color--light;
     box-shadow: none;
+
+    & a {
+      color: $text-color--light;
+    }
   }
 
   .post-container .timestamp-and-quote-container ~ .content > .post.quoted {
