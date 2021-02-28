@@ -1,5 +1,7 @@
 <template>
-  <nav class="header">
+  <nav 
+    class="header"
+  >
     <router-link
       class="home-icon"
       :to="{ name: 'Topics' }"

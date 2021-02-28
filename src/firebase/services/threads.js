@@ -21,6 +21,16 @@ const getThreads = () => {
   return threads;
 };
 
+const getThread = async (topicId, threadId) => {
+  if(!topicId || !threadId)
+    return null;
+
+  const thread = await database.collection(`topics/${topicId}/threads`)
+    .doc(threadId).get();
+
+  return thread.data();
+}
+
 const updateThreadLastUpdated = async (topicId, threadId) => {
   await database.collection(`topics/${topicId}/threads`)
     .doc(threadId)
@@ -48,4 +58,4 @@ watchEffect(onInvalidate => {
   });
 });
 
-export { setupThreadsListener, getThreads, updateThreadLastUpdated, createThread };
+export { setupThreadsListener, getThreads, getThread, updateThreadLastUpdated, createThread };

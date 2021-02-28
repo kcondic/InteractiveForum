@@ -6,11 +6,36 @@
 </template>
 
 <script>
+import { ref, inject, watch } from 'vue';
 import Header from '@/components/shared/Header';
+import { getUser } from '@/firebase/services/auth';
+import { setupQuotedListener, getQuotes } from '@/firebase/services/posts';
+
 export default {
   name: 'App',
   components: {
     Header
+  },
+  setup() {
+    const toast = inject('$toast');
+    const quotedPosts = getQuotes();
+    const user = getUser();
+
+    const reactToQuotedListener = (user) => {
+      if(user.value)
+        setupQuotedListener(user.value.uid);
+    };
+
+    reactToQuotedListener(user);
+
+    watch(user, () => {
+      reactToQuotedListener(user);
+    });
+
+    watch(quotedPosts, () => {
+      for(let post of quotedPosts.value)
+        toast(post, { duration: 10000 });
+    });
   }
 }
 </script>
