@@ -9,7 +9,10 @@
       <img :src="homeIcon">
     </router-link>
     <template v-if="user">
-      <router-link :to="{ name: 'Profile' }" class="username">
+      <router-link
+        :to="{ name: 'Profile' }"
+        class="username"
+      >
         {{ user.displayName }}
       </router-link>
       <button @click="logout">

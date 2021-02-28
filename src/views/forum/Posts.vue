@@ -13,7 +13,13 @@
     </h3>
   </div>
   <PostEditor @send-post="sendPost" />
-  <button class="remove-quote" v-if="quotedPostId" @click="removeQuote">Makni citat</button>
+  <button
+    v-if="quotedPostId"
+    class="remove-quote"
+    @click="removeQuote"
+  >
+    Makni citat
+  </button>
 </template>
 
 <script>

@@ -1,8 +1,17 @@
 <template>
   <div class="post-editor">
-    <vue-editor :disabled="!user" v-model="content" />
+    <vue-editor
+      v-model="content"
+      :disabled="!user"
+    />
   </div>
-  <button v-if="user" class="post-button" @click="sendPost">Pošalji</button>
+  <button
+    v-if="user"
+    class="post-button"
+    @click="sendPost"
+  >
+    Pošalji
+  </button>
 </template>
 
 <script>
@@ -12,6 +21,7 @@ import { getUser } from '@/firebase/services/auth';
 
 export default {
   components: { VueEditor },
+  emits: ['sendPost'],
   setup(props, context) {
     const content = ref('');
     const user = getUser();

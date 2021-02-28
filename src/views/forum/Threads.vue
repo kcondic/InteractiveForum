@@ -1,6 +1,9 @@
 <template>
   <h1>Teme</h1>
-  <AddThread v-if="user" :topic-id="topicId" />
+  <AddThread
+    v-if="user"
+    :topic-id="topicId"
+  />
   <Thread
     v-for="thread in threads"
     :key="thread.id"

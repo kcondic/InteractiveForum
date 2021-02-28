@@ -1,21 +1,30 @@
 <template>
-<div class="add-thread-container">
-  <button @click="createThreadActive = true">Stvori novu temu</button>
-  <template v-if="createThreadActive">
-    <form class="add-thread-form" @submit.prevent="submitCreateThread">
-      <input
-        v-model="threadName"
-        type="text"
-        required
-        placeholder="Ime teme"
+  <div class="add-thread-container">
+    <button @click="createThreadActive = true">
+      Stvori novu temu
+    </button>
+    <template v-if="createThreadActive">
+      <form
+        class="add-thread-form"
+        @submit.prevent="submitCreateThread"
       >
-      <div class="action-container">
-        <button @click="createThreadActive = false">Odustani</button>
-        <button type="submit">Pošalji</button>
-      </div>
-    </form>
-  </template>
-</div>
+        <input
+          v-model="threadName"
+          type="text"
+          required
+          placeholder="Ime teme"
+        >
+        <div class="action-container">
+          <button @click="createThreadActive = false">
+            Odustani
+          </button>
+          <button type="submit">
+            Pošalji
+          </button>
+        </div>
+      </form>
+    </template>
+  </div>
 </template>
 
 <script>

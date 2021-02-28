@@ -1,19 +1,29 @@
 <template>
-  <div class="post" :class="{ quoted: isQuotedPost }">
+  <div
+    class="post"
+    :class="{ quoted: isQuotedPost }"
+  >
     <div
-      class="user-details-container"
       v-if="!isQuotedPost"
+      class="user-details-container"
     >
       <UserDetails
         :user="user"
       />
     </div>
     <div class="post-container">
-      <div class="timestamp-and-quote-container" v-if="!isQuotedPost">
+      <div
+        v-if="!isQuotedPost"
+        class="timestamp-and-quote-container"
+      >
         <div class="timestamp">
           {{ post.timestamp.toDate().toLocaleString() }}
         </div>
-        <a v-if="authenticatedUser" class="quote-cta" @click="setQuote">Citiraj</a>
+        <a
+          v-if="authenticatedUser"
+          class="quote-cta"
+          @click="setQuote"
+        >Citiraj</a>
       </div>
       <div class="content">
         <Post
@@ -30,9 +40,12 @@
               :only-username="true"
             /> je napisao/la:
           </div>
-          <div v-html="post.content"></div>
+          <div v-html="post.content" />
         </template>
-        <div v-else v-html="post.content"></div>
+        <div
+          v-else
+          v-html="post.content"
+        />
       </div>
     </div>
   </div>
@@ -66,6 +79,7 @@ export default {
       default: false
     }
   },
+  emits: ['setQuote'],
   setup(props, context) {
     const authenticatedUser = getUser();
     const user = ref(null);

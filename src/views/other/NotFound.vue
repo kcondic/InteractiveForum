@@ -1,10 +1,20 @@
 <template>
   <div class="not-found">
-    <img class="stop" :src="require('@/assets/404.jpg')" />
-    <div class="title">Nema ničeg ovdje!</div>
+    <img
+      class="stop"
+      :src="require('@/assets/404.jpg')"
+    >
+    <div class="title">
+      Nema ničeg ovdje!
+    </div>
     <div class="subtitle">
       Možete se vratiti na
-      <router-link class="back-to-home" :to="{ name: 'Topics' }">naslovnicu</router-link>
+      <router-link
+        class="back-to-home"
+        :to="{ name: 'Topics' }"
+      >
+        naslovnicu
+      </router-link>
     </div>
   </div>
 </template>
