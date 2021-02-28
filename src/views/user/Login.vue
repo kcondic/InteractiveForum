@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import LoginForm from '@/components/shared/LoginForm';
+import LoginForm from '@/components/user/LoginForm';
 
 export default {
   components: {

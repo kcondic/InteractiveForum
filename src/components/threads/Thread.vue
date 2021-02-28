@@ -14,7 +14,7 @@
         {{ thread.title }}
       </div>
       <div class="updated-on">
-        Zadnji post: {{ thread.lastUpdated.toDate().toLocaleString() }}
+        Zadnja aktivnost: {{ thread.lastUpdated.toDate().toLocaleString() }}
       </div>
     </div>
     <div class="user-details">

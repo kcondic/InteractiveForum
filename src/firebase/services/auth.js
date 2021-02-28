@@ -47,7 +47,19 @@ const tryLogin = async (email, password) => {
 const tryLogout = async () => {
   try {
     await auth.signOut();
+    return null;
   } catch(error) {
+    return error;
+  }
+}
+
+const changePassword = async (newPassword) => {
+  const user = getUser();
+  try {
+    await user.value.updatePassword(newPassword);
+    return null;
+  }
+  catch(error) {
     return error;
   }
 }
@@ -62,4 +74,4 @@ const getUser = () => {
   return user;
 }
 
-export { tryRegister, tryLogin, tryLogout, getUser, getAdditionalUserInfo };
+export { tryRegister, tryLogin, tryLogout, getUser, getAdditionalUserInfo, changePassword };

@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import RegisterForm from '@/components/shared/RegisterForm';
+import RegisterForm from '@/components/user/RegisterForm';
 
 export default {
   components: {

@@ -1,10 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router';
-import Topics from '@/views/Topics';
-import Register from '@/views/Register';
-import Login from '@/views/Login';
-import Threads from '@/views/Threads';
-import Posts from '@/views/Posts';
-import NotFound from '@/views/NotFound';
+import Topics from '@/views/forum/Topics';
+import Threads from '@/views/forum/Threads';
+import Posts from '@/views/forum/Posts';
+import Register from '@/views/user/Register';
+import Login from '@/views/user/Login';
+import Profile from '@/views/user/Profile';
+import NotFound from '@/views/other/NotFound';
 import { auth } from '@/firebase/config';
 
 const requireNonAuth = (to, from, next) => {
@@ -15,11 +16,29 @@ const requireNonAuth = (to, from, next) => {
         next();
 }
 
+const requireAuth = (to, from, next) => {
+    let user = auth.currentUser;
+    if(user)
+        next();
+    else
+        next({ name: 'Topics' });
+}
+
 const routes = [
     {
         path: '/',
         name: 'Topics',
         component: Topics
+    },
+    {
+        path: '/threads/:topicId-:topicTitle',
+        name: 'Threads',
+        component: Threads
+    },
+    {
+        path: '/posts/:topicId/:threadId-:threadTitle',
+        name: 'Posts',
+        component: Posts
     },
     {
         path: '/user/register',
@@ -34,14 +53,10 @@ const routes = [
         beforeEnter: requireNonAuth
     },
     {
-        path: '/threads/:topicId-:topicTitle',
-        name: 'Threads',
-        component: Threads
-    },
-    {
-        path: '/posts/:topicId/:threadId-:threadTitle',
-        name: 'Posts',
-        component: Posts
+        path: '/user/profile',
+        name: 'Profile',
+        component: Profile,
+        beforeEnter: requireAuth
     },
     {
         path: '/:pathMatch(.*)*',

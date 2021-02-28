@@ -56,28 +56,24 @@ export default {
 
     const register = async () => {
       let isValidMail = /\S+@\S+\.\S+/.test(email.value);
-
       if(!isValidMail) {
         toast('E-mail adresa nije važeća.', { type: 'error' });
         return;
       }
 
       let isValidUsername = username.value.length >= 6;
-
       if(!isValidUsername) {
         toast('Korisničko ime je prekratko.', { type: 'error' });
         return;
       }
 
       let isValidPassword = password.value.length >= 6;
-
       if(!isValidPassword) {
         toast('Lozinka je prekratka.', { type: 'error' });
         return;
       }
 
       let doPasswordsMatch = password.value === repeatedPassword.value;
-
       if(!doPasswordsMatch) {
         toast('Lozinke se ne poklapaju.', { type: 'error' });
         return;

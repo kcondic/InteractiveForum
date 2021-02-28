@@ -7,7 +7,9 @@
       <img :src="homeIcon">
     </router-link>
     <template v-if="user">
-      <span class="username">{{ user.displayName }}</span>
+      <router-link :to="{ name: 'Profile' }" class="username">
+        {{ user.displayName }}
+      </router-link>
       <button @click="logout">
         Odjava
       </button>
@@ -57,7 +59,7 @@ export default {
     padding: 10px 0;
   }
 
-  a {
+  a:not(.username) {
     margin-right: 20px;
     border-bottom: 2px solid transparent;
     text-transform: uppercase;
@@ -70,7 +72,7 @@ export default {
     }
   }
 
-  .home-icon {
+  a.home-icon {
     filter: invert(1);
     padding: 0;
     display: flex;
