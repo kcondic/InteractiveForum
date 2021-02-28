@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUpdated } from 'vue';
 import { getAdditionalUserInfo } from '@/firebase/services/auth';
 import { getPost } from '@/firebase/services/posts';
 import { getUser } from '@/firebase/services/auth';
@@ -82,6 +82,11 @@ export default {
         quotedPostData = await getPost(props.topicId, props.threadId, quotedPostId);
 
       quotedPost.value = quotedPostData;
+    });
+
+    onUpdated(async () => {
+      const userInfo = await getAdditionalUserInfo(props.post.createdByUserId); 
+      user.value = userInfo;
     });
 
     const setQuote = () => {
